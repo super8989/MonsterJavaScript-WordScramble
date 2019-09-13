@@ -5,6 +5,7 @@ const button = document.querySelector("button");
 let inplay = false;
 let scramble = '';
 let scrambled = '';
+let score = 0;
 
 
 const myArray = ['javascript', 'website', 'html', 'document', 'course'];
@@ -12,11 +13,26 @@ const myArray = ['javascript', 'website', 'html', 'document', 'course'];
 button.addEventListener("click", function() {
     if (!inplay) {
         inplay = true;
+        score = 0;
         button.innerHTML = "Guess";
         guess.classList.toggle("hidden");
         scramble = createWord();
         scrambled = randomArray(scramble.split('')).join('');
-        message.innerHTML = scrambled + ' ' + scramble;
+        message.innerHTML = scrambled + ' ' + scramble; 
+    } else {
+        let tempGuess = guess.value;
+        score++;
+        console.log(tempGuess);
+
+        if (tempGuess === scramble) {
+            console.log('correct');
+            inplay = false;
+            message.innerHTML = 'Correct it was ' + scramble + ' it took ' + score + ' guesses';
+            button.innerHTML = 'Start';
+            guess.classList.toggle('hidden');
+        } else {
+            console.log('guess again');
+        }
     }
 })
 
@@ -25,11 +41,8 @@ function createWord() {
     let tempWord = myArray[randomIndex];
 
     console.log(tempWord);
-
     
     return tempWord;
-
-    console.log(rand.join(''));
 
 }
 

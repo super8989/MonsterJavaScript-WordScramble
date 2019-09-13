@@ -3,6 +3,9 @@ const guess = document.querySelector("input");
 const button = document.querySelector("button");
 
 let inplay = false;
+let scramble = '';
+let scrambled = '';
+
 
 const myArray = ['javascript', 'website', 'html', 'document', 'course'];
 
@@ -11,7 +14,9 @@ button.addEventListener("click", function() {
         inplay = true;
         button.innerHTML = "Guess";
         guess.classList.toggle("hidden");
-        console.log(createWord());
+        scramble = createWord();
+        scrambled = randomArray(scramble.split('')).join('');
+        message.innerHTML = scrambled + ' ' + scramble;
     }
 })
 
@@ -21,7 +26,9 @@ function createWord() {
 
     console.log(tempWord);
 
-    let rand = randomArray(tempWord.split(''));
+    
+    return tempWord;
+
     console.log(rand.join(''));
 
 }
@@ -30,9 +37,6 @@ function randomArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         let temp = arr[i];
         let j = Math.floor(Math.random() * (i + 1));
-        console.log(temp);
-        console.log('i: ' + i); 
-        console.log('j: ' + j); 
 
         arr[i] = arr[j]; 
         arr[j] = temp; 

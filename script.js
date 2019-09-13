@@ -11,5 +11,18 @@ button.addEventListener("click", function() {
         inplay = true;
         button.innerHTML = "Guess";
         guess.classList.toggle("hidden");
+        console.log(createWord());
     }
 })
+
+function createWord() {
+    let randomIndex = Math.floor(Math.random() * myArray.length);
+    let tempWord = myArray[randomIndex];
+
+    console.log(tempWord.split(''));
+
+}
+
+function randomArray(arr) {
+
+}
